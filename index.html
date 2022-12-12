@@ -13,6 +13,8 @@
         $.getJSON("data.json", 
           function (data) {
             if (data.length > 0) {
+              abortTimer();
+              alert("it has data");
             }
           });
       }
@@ -24,5 +26,6 @@
   </head>
 <body>
 <h1>Please wait</h1>
+  <img src="https://media.tenor.com/UnFx-k_lSckAAAAM/amalie-steiness.gif" />
 </body>
 </html>

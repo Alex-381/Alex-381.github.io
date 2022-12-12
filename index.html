@@ -10,13 +10,13 @@
       });
 
       function checkData() {
-        $.getJSON("data.json", 
-          function (data) {
-            if (data.length > 0) {
-              abortTimer();
-              alert("it has data");
-            }
-          });
+        $.ajax({
+          url: 'data.json',
+          dataType: 'json',
+          success: function(data){
+            console.log( data );
+          }
+        });
       }
       
       function abortTimer() {

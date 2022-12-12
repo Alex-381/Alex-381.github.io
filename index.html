@@ -4,15 +4,21 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     
     <script>
+      var interval;
       $(function() {
-        const myTimeout = setInterval(checkData, 1000);
+        interval = setInterval(checkData, 1000);
       });
 
       function checkData() {
         $.getJSON("data.json", 
           function (data) {
-            alert(data.length);
+            if (data.length > 0) {
+            }
           });
+      }
+      
+      function abortTimer() {
+        clearInterval(interval);
       }
     </script>
   </head>

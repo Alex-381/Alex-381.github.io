@@ -5,7 +5,7 @@ $(function() {
 
 function checkData() {
   $.ajax({
-    url: 'https://alex-381.github.io/names.json',
+    url: 'https://alex-381.github.io/data/names.json',
     dataType: 'json',
     success: function(data){
 		

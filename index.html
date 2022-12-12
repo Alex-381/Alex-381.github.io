@@ -1,7 +1,23 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    
+    <script>
+      $(function() {
+        const myTimeout = setTimeout(checkData, 1000);
+      });
+
+      function checkData() {
+        $.getJSON("data.json", 
+          function (data) {
+            alert(data.length);
+          }
+        });
+      }
+    </script>
+  </head>
 <body>
-<h1>Hello, Wade</h1>
-<p>I'm hosted with GitHub Pages.</p>
+<h1>Please wait</h1>
 </body>
 </html>

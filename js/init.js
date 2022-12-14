@@ -5,7 +5,7 @@ $(document).ready(function() {
 	name = '';
 	
 	$(".countdown").countdown({
-				date: "14 dec 2022 19:00:00",
+				date: "14 dec 2022 18:54:00",
 				format: "on"
 			},
 			

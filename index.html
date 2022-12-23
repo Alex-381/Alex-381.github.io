@@ -24,12 +24,12 @@ https://templatemo.com/tm-521-get-ready
      <!-- MAIN CSS -->
      <link rel="stylesheet" href="css/templatemo-style.css">
 
+	 
 	 <style>
-		#the-countdown {
+		#stage2, #stage3 {
 			display:none;
 		}
 	 </style>
-	 
 </head>
 <body>
 
@@ -37,8 +37,32 @@ https://templatemo.com/tm-521-get-ready
      <section id="home">
         <div class="overlay"></div>
           <div class="container">
-               <div class="row" id="the-countdown">
-
+		  
+				<div class="row" id="stage1">
+                    <div class="col-md-12 col-sm-12">
+                         <div class="home-info">
+                              <h1>Not yet!</h1>
+							  <h1>You possess the box but you have not fully earned it.</h1>
+                         </div>
+                    </div>
+               </div>
+		  
+				<div class="row" id="stage2">
+					<div class="col-md-12 col-sm-12">
+                         <div class="home-info">
+                              <h1>Exciting things are coming!</h1>
+                              
+							  <div class="subscribe-form">
+                                <form action="" method="get">
+                                  <input id="txtName" type="text" name="text" class="form-control" placeholder="Enter your name">
+                                  <input style="margin-top:10px" type="button" onclick="registerName()" class="form-control" value="Submit" />
+                                </form>
+                              </div>
+                         </div>
+                    </div>
+				</div>
+			   
+				<div class="row" id="stage3">
                     <div class="col-md-12 col-sm-12">
                          <div class="home-info">
 							<h1 id="the-name"></h1>
@@ -64,24 +88,7 @@ https://templatemo.com/tm-521-get-ready
                               </ul>
                          </div>
                     </div>
-
                </div>
-			   
-			   <div class="row" id="the-placeholder">
-					<div class="col-md-12 col-sm-12">
-                         <div class="home-info">
-                              <h1>Exciting things are coming!</h1>
-							  <h1>Please wait</h1>
-                              <section class="preloader2">
-								<div class="spinner">
-
-								<span class="spinner-rotate"></span>
-               
-								</div>
-							</section>
-                         </div>
-                    </div>
-			   </div>
           </div>
      </section>
 
@@ -90,20 +97,53 @@ https://templatemo.com/tm-521-get-ready
      <script src="js/bootstrap.min.js"></script>
      <script src="js/vegas.min.js"></script>
      <script src="js/countdown.js"></script>
-     <script src="js/init.js"></script>
 	 
 	 <script>
+		var competitionOver = false;
+		
 		$(function() {
-			const name = 'Wade';
+			$(".countdown").countdown({
+				date: "25 dec 2022 15:00:00",
+				format: "on"
+			}, function() {
+				window.location.href = 'you-win.html';
+			});
 			
-			if (name == '') {
-				setTimeout(reload, 10000);
-			} else {
-				$('#the-countdown').show();
-				$('#the-placeholder').hide();
-				$('#the-name').text('Hello, ' + name);
-			}
+			init();
 		});
+		
+		function init() {
+			if (competitionOver) {
+				$('#stage1').hide();
+				
+				if (hasName()) {
+					$('#stage3').show();
+					$('#stage2').hide();
+					
+					$('#the-name').text('Hello, ' + getName());
+				} else {
+					$('#stage3').hide();
+					$('#stage2').show();
+				}
+			} else {
+				setTimeout(reload, 30000);
+			}
+		}
+		
+		function hasName() {
+			if (localStorage['name']) {
+				return true;
+			}
+		}
+		
+		function getName() {
+			return localStorage['name'];
+		}
+		
+		function registerName() {
+			localStorage['name'] = $('#txtName').val();
+			init();
+		}
 		
 		function reload() {
 			window.location.reload();
